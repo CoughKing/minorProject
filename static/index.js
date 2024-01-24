@@ -1,19 +1,22 @@
 //console.log("checking things Yo know");
-let img1= "C:\\Users\\Lenovo\\Desktop\\Mah Code\\Flask_use\\static\\images\\Gahiro.png";
-let mp3_1="C:\Users\Lenovo\Desktop\Mah Code\Flask_use\static\music\Gahiro.mp3"; 
-console.log("img url:", img1);
+// let img1= "C:\\Users\\Lenovo\\Desktop\\Mah Code\\Flask_use\\static\\images\\Gahiro.png";
+// let mp3_1="C:\Users\Lenovo\Desktop\Mah Code\Flask_use\static\music\Gahiro.mp3"; 
+// console.log("img url:", img1);
 
-let img2= "{{ url_for('static', filename='images/SHANGRILA.png') }}";
-let mp3_2= "{{ url_for('static', filename='music/SHANGRILA.mp3') }}"; 
+// let img2= "{{ url_for('static', filename='images/SHANGRILA.png') }}";
+// let mp3_2= "{{ url_for('static', filename='music/SHANGRILA.mp3') }}"; 
 
-let img3= "{{ url_for('static', filename='images/Udayo_Relaile.png') }}";
-let mp3_3= "{{ url_for('static', filename='music/Udayo Relaile.mp3') }}"; 
+// let img3= "{{ url_for('static', filename='images/Udayo_Relaile.png') }}";
+// let mp3_3= "{{ url_for('static', filename='music/Udayo Relaile.mp3') }}"; 
 
-let img4= "{{ url_for('static', filename='images/Badi_Mushkil_Hai.png') }}";
-let mp3_4= "{{ url_for('static', filename='music/Badi Mushkil Hai.mp3') }}"; 
+// let img4= "{{ url_for('static', filename='images/Badi_Mushkil_Hai.png') }}";
+// let mp3_4= "{{ url_for('static', filename='music/Badi Mushkil Hai.mp3') }}"; 
 
-let img5= "{{ url_for('static', filename='images/Dark_Souls_3_Main_Theme.png') }}";
-let mp3_5= "{{ url_for('static', filename='music/Dark Souls 3 Main Theme.mp3') }}"; 
+// let img5= "{{ url_for('static', filename='images/Dark_Souls_3_Main_Theme.png') }}";
+// let mp3_5= "{{ url_for('static', filename='music/Dark Souls 3 Main Theme.mp3') }}"; 
+
+const base_url = '/static/images';
+const base_mp3 = '/static/music';
 
 let now_playing = document.querySelector('.now-playing');
 let track_art = document.querySelector('.track-art');
@@ -39,38 +42,38 @@ let updateTimer;
 
 const music_list = [
     {
-        img: img1,
+        img: base_url + '/Gahiro.png',
         name: 'Gahiro',
         artist: 'Monkey Temple',
-        music: mp3_1,
+        music: base_mp3 + '/Gahiro.mp3',
     },
 
     {
-        img: img2,
+        img: base_url + '/SHANGRILA.png',
         name: 'SHANGRILA',
         artist: 'SteelHeart',
-        music: mp3_2,
+        music: base_mp3 + '/SHANGRILA.mp3',
     },
 
     {
-        img: img3,
+        img: base_url + '/Udayo_Relaile.png',
         name: 'Udayo Relaile',
         artist: 'Nepathya',
-        music: mp3_3,
+        music: base_mp3 + '/Udayo Relaile.mp3',
     },
 
     {
-        img: img4,
+        img: base_url + '/Badi_Mushkil_Hai.png',
         name: 'Badi Mushkil Hai',
         artist: 'Abhijeet, Sameer',
-        music: mp3_4,
+        music: base_mp3 + '/Badi Mushkil Hai.mp3',
     },
 
     {
-        img: img5,
+        img: base_url + '/Dark_Souls_3_Main_Theme.png',
         name: 'Dark Souls 3',
         artist: 'Yuka Kitamura',
-        music: mp3_5,
+        music: base_mp3 + '/Dark Souls 3 Main Theme.mp3',
     }
 
     
@@ -85,7 +88,7 @@ function loadTrack(track_index){
     curr_track.src = music_list[track_index].music;
     curr_track.load();
 
-    track_art.style.backgroundImage = music_list[track_index].img;
+    track_art.style.backgroundImage = "url(" + music_list[track_index].img + ")";
     console.log( music_list[track_index].img)
     track_name.textContent = music_list[track_index].name;
     track_artist.textContent = music_list[track_index].artist;
