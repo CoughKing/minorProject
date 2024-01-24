@@ -8,6 +8,22 @@
     <script src="https://kit.fontawesome.com/c057609ff7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">
+    <script>
+        const fetchApi = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/okay');
+                const res = await response.json();
+                console.log(res);
+                if(res.str="next"){
+                    nextTrack()
+                }
+            } catch(err) {
+                console.log(error);
+            }
+        };
+
+        setInterval(fetchApi, 1000);
+    </script>
 </head>
 <body>
     <div class="player">
