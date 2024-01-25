@@ -14,8 +14,17 @@
                 const response = await fetch('http://localhost:4000/okay');
                 const res = await response.json();
                 console.log(res);
-                if(res.str="next"){
+                if(res.comm === "next"){
                     nextTrack()
+                }
+                if(res.comm === "previous"){
+                    prevTrack()
+                }
+                if(res.comm === "play"){
+                    playTrack()
+                }
+                if(res.comm === "pause"){
+                    pauseTrack()
                 }
             } catch(err) {
                 console.log(error);

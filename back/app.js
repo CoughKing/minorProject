@@ -8,7 +8,7 @@ app.use(cors())
 app.get('/okay',(req, res)=>{
     res.json({
         success: false,
-        str:"next"
+        comm:"play"
     });
 });
 
