@@ -6,9 +6,10 @@ import pandas as pd
 # ser.close()
 
 import os
+i=0
 
-
-def take_video():
+def take_video(i=0):
+    
     print("inside take video")
     cap=cv.VideoCapture(0)
 
@@ -118,7 +119,14 @@ def take_video():
     #                 if length_roatate>80:
     #                    # print("come to normal")
 
-                
+        i=i+1
+        if i>60:
+                play = False 
+                pause = False
+                previous = False
+                next = False
+                i=0
+
         cv.imshow("hand detection",img)
         key=cv.waitKey(1)
         if key==ord('q'):
