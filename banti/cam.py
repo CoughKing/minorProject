@@ -3,15 +3,26 @@ import math
 from cvzone.HandTrackingModule import HandDetector
 import cv2 as cv
 import pandas as pd
+import urllib.request
+import numpy as np
 # ser.close()
 
 import os
 i=0
 
+
+# Function to send commands to ESP32CAM
+
+cv.namedWindow("hand detection", cv.WINDOW_AUTOSIZE)
+
 def take_video(i=0):
+    url = "http://192.168.253.239/800x600.jpg"
     
     print("inside take video")
-    cap=cv.VideoCapture(0)
+    ##cap=cv.VideoCapture(0)
+    cap = cv.VideoCapture(url)
+    
+
 
 
     detector=HandDetector(detectionCon=0.8,maxHands=2)
@@ -22,7 +33,12 @@ def take_video(i=0):
 
     #ser=serial.Serial('com3',9600,timeout=1)
     while True:
-        sucess,img=cap.read()
+        img_resp = urllib.request.urlopen(url)
+        imgnp = np.array(bytearray(img_resp.read()), dtype=np.uint8)
+        img = cv.imdecode(imgnp, -1)
+
+
+        #sucess,img=cap.read()
         hands,img = detector.findHands(img)
         if hands:
             
@@ -127,7 +143,9 @@ def take_video(i=0):
                 next = False
                 i=0
 
-        cv.imshow("hand detection",img)
+        cv.imshow("hand detection", img)
+
+
         key=cv.waitKey(1)
         if key==ord('q'):
             cap.release()
